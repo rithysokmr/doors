@@ -1,0 +1,20 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @RenderSection("head", false)
+</head>
+<body>
+    <div>
+        @Html.ActionLink("Add New User", "Index", "Master") |
+        @Html.ActionLink("User Management", "UserMG", "Master") |
+        Tax Invoice |
+        Truck |
+        Monthly Payment |
+        User 
+        @RenderBody()
+    </div>
+</body>
+</html>
