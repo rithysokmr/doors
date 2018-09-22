@@ -22,7 +22,6 @@ namespace Doors.Controllers
             loginUser.user_id = users.user_id;
             loginUser.username = users.username;
             loginUser.fullname = users.fullname;
-            loginUser.afsd = users.afsd;
 
             return View(loginUser);
         }

@@ -14,10 +14,13 @@
     <Key>
       <PropertyRef Name="user_id" />
     </Key>
-    <Property Name="user_id" Type="int" Nullable="false" />
+    <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="username" Type="varchar" MaxLength="50" />
+    <Property Name="password" Type="text" />
     <Property Name="fullname" Type="varchar" MaxLength="50" />
-    <Property Name="afsd" Type="varchar" MaxLength="50" />
+    <Property Name="sex" Type="nchar" MaxLength="10" />
+    <Property Name="role" Type="nchar" MaxLength="10" />
+    <Property Name="personal_info" Type="text" />
   </EntityType>
   <EntityContainer Name="DoorModelStoreContainer">
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />

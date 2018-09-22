@@ -16,7 +16,10 @@ namespace Doors.Models
     {
         public int user_id { get; set; }
         public string username { get; set; }
+        public string password { get; set; }
         public string fullname { get; set; }
-        public string afsd { get; set; }
+        public string sex { get; set; }
+        public string role { get; set; }
+        public string personal_info { get; set; }
     }
 }

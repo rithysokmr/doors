@@ -19,10 +19,13 @@
           <Key>
             <PropertyRef Name="user_id" />
           </Key>
-          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="username" Type="varchar" MaxLength="50" />
+          <Property Name="password" Type="text" />
           <Property Name="fullname" Type="varchar" MaxLength="50" />
-          <Property Name="afsd" Type="varchar" MaxLength="50" />
+          <Property Name="sex" Type="nchar" MaxLength="10" />
+          <Property Name="role" Type="nchar" MaxLength="10" />
+          <Property Name="personal_info" Type="text" />
         </EntityType>
         <EntityContainer Name="DoorModelStoreContainer">
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
@@ -50,10 +53,13 @@
           <Key>
             <PropertyRef Name="user_id" />
           </Key>
-          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="fullname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="afsd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="sex" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="role" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="personal_info" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -75,8 +81,11 @@
           <EntitySetMapping Name="users">
             <EntityTypeMapping TypeName="DoorModel.user">
               <MappingFragment StoreEntitySet="users">
-                <ScalarProperty Name="afsd" ColumnName="afsd" />
+                <ScalarProperty Name="personal_info" ColumnName="personal_info" />
+                <ScalarProperty Name="role" ColumnName="role" />
+                <ScalarProperty Name="sex" ColumnName="sex" />
                 <ScalarProperty Name="fullname" ColumnName="fullname" />
+                <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="username" ColumnName="username" />
                 <ScalarProperty Name="user_id" ColumnName="user_id" />
               </MappingFragment>

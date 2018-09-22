@@ -15,8 +15,11 @@
     <EntitySetMapping Name="users">
       <EntityTypeMapping TypeName="DoorModel.user">
         <MappingFragment StoreEntitySet="users">
-          <ScalarProperty Name="afsd" ColumnName="afsd" />
+          <ScalarProperty Name="personal_info" ColumnName="personal_info" />
+          <ScalarProperty Name="role" ColumnName="role" />
+          <ScalarProperty Name="sex" ColumnName="sex" />
           <ScalarProperty Name="fullname" ColumnName="fullname" />
+          <ScalarProperty Name="password" ColumnName="password" />
           <ScalarProperty Name="username" ColumnName="username" />
           <ScalarProperty Name="user_id" ColumnName="user_id" />
         </MappingFragment>

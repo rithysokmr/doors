@@ -18,9 +18,12 @@
     <Key>
       <PropertyRef Name="user_id" />
     </Key>
-    <Property Name="user_id" Type="Int32" Nullable="false" />
+    <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="fullname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="afsd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="sex" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="role" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="personal_info" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
   </EntityType>
 </Schema>
