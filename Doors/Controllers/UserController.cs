@@ -16,7 +16,8 @@ namespace Doors.Controllers
         {
             DoorEntities db = new DoorEntities();
 
-            user users = db.users.SingleOrDefault(x => x.user_id == 1);
+            var users = db.users.ToList();
+
             Users loginUser = new Users();
 
             loginUser.user_id = users.user_id;

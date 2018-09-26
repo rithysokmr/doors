@@ -1,0 +1,48 @@
+﻿body div, button {
+    font-size: 12px;
+}
+.header div, .footer {
+    background-color: #8be1dc;
+}
+.profile_image, .logo {
+    padding-top: 10px;
+}
+.footer {
+    text-align: center;
+    vertical-align: middle;
+    line-height: 50px;
+}
+.user_image {
+    width: 50px;
+    height: 50px;
+}
+.menu {
+    text-align: right;
+    padding-right: 10px;
+}
+.menu a {
+    color: black;
+}
+.body {
+    margin:5px 50px;
+}
+.page_title {
+    font-size: 15px;
+    text-decoration: double;
+    text-align: center;
+}
+.btn_custom {
+    background-color: #dee2e6;
+    border: 1px solid gray;
+    line-height: 20px;
+}
+
+
+/* User Management */
+.manage img {
+    width:16px;
+    margin-left: 5px;
+}
+.user_table {
+    margin-top: 20px;
+}

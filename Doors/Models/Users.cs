@@ -14,5 +14,10 @@ namespace Doors.Models
         public string sex { get; set; }
         public string role { get; set; }
         public string personal_info { get; set; }
+        public string create_by { get; set; }
+        public Nullable<System.DateTime> create_on { get; set; }
+        public string last_change_by { get; set; }
+        public Nullable<System.DateTime> last_change_on { get; set; }
+        public string extra { get; set; }
     }
 }

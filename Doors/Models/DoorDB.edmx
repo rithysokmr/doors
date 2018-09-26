@@ -26,6 +26,11 @@
           <Property Name="sex" Type="nchar" MaxLength="10" />
           <Property Name="role" Type="nchar" MaxLength="10" />
           <Property Name="personal_info" Type="text" />
+          <Property Name="create_by" Type="varchar" MaxLength="50" />
+          <Property Name="create_on" Type="date" />
+          <Property Name="last_change_by" Type="varchar" MaxLength="50" />
+          <Property Name="last_change_on" Type="date" />
+          <Property Name="extra" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityContainer Name="DoorModelStoreContainer">
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
@@ -60,6 +65,11 @@
           <Property Name="sex" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="role" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="personal_info" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="create_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="create_on" Type="DateTime" Precision="0" />
+          <Property Name="last_change_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="last_change_on" Type="DateTime" Precision="0" />
+          <Property Name="extra" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -81,6 +91,11 @@
           <EntitySetMapping Name="users">
             <EntityTypeMapping TypeName="DoorModel.user">
               <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="extra" ColumnName="extra" />
+                <ScalarProperty Name="last_change_on" ColumnName="last_change_on" />
+                <ScalarProperty Name="last_change_by" ColumnName="last_change_by" />
+                <ScalarProperty Name="create_on" ColumnName="create_on" />
+                <ScalarProperty Name="create_by" ColumnName="create_by" />
                 <ScalarProperty Name="personal_info" ColumnName="personal_info" />
                 <ScalarProperty Name="role" ColumnName="role" />
                 <ScalarProperty Name="sex" ColumnName="sex" />

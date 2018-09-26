@@ -85,11 +85,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\stylesheet\stylesheet.css" />
     <Content Include="Global.asax" />
     <EntityDeploy Include="Models\DoorDB.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>DoorDB.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <Content Include="images\user.png" />
+    <Content Include="images\delete.png" />
+    <Content Include="images\edit.png" />
+    <Content Include="images\view-details.png" />
+    <Content Include="images\រំដូល.jpg" />
     <Content Include="Models\DoorDB.edmx.diagram">
       <DependentUpon>DoorDB.edmx</DependentUpon>
     </Content>
@@ -111,6 +117,8 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="stylesheet\stylesheet.css" />
+    <Content Include="Views\stylesheet\stylesheet.css" />
     <Content Include="Web.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
@@ -162,7 +170,8 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Folder Include="App_Data\images\" />
+    <Folder Include="Views\images\" />
     <Folder Include="Views\Master\" />
   </ItemGroup>
   <PropertyGroup>
