@@ -12,9 +12,16 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="users">
-      <EntityTypeMapping TypeName="DoorModel.user">
-        <MappingFragment StoreEntitySet="users">
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="DoorModel.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="end_date" ColumnName="end_date" />
+          <ScalarProperty Name="beg_date" ColumnName="beg_date" />
+          <ScalarProperty Name="extra" ColumnName="extra" />
+          <ScalarProperty Name="last_change_on" ColumnName="last_change_on" />
+          <ScalarProperty Name="last_change_by" ColumnName="last_change_by" />
+          <ScalarProperty Name="create_on" ColumnName="create_on" />
+          <ScalarProperty Name="create_by" ColumnName="create_by" />
           <ScalarProperty Name="personal_info" ColumnName="personal_info" />
           <ScalarProperty Name="role" ColumnName="role" />
           <ScalarProperty Name="sex" ColumnName="sex" />

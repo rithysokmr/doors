@@ -15,11 +15,13 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
-        <EntityType Name="users">
+        <EntityType Name="Users">
           <Key>
             <PropertyRef Name="user_id" />
           </Key>
           <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="beg_date" Type="date" />
+          <Property Name="end_date" Type="date" />
           <Property Name="username" Type="varchar" MaxLength="50" />
           <Property Name="password" Type="text" />
           <Property Name="fullname" Type="varchar" MaxLength="50" />
@@ -34,7 +36,7 @@
         </EntityType>
         <EntityContainer Name="DoorModelStoreContainer">
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -52,9 +54,9 @@
         </EntityType>
         <EntityContainer Name="DoorEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
-          <EntitySet Name="users" EntityType="DoorModel.user" />
+          <EntitySet Name="Users" EntityType="DoorModel.User" />
         </EntityContainer>
-        <EntityType Name="user">
+        <EntityType Name="User">
           <Key>
             <PropertyRef Name="user_id" />
           </Key>
@@ -70,6 +72,8 @@
           <Property Name="last_change_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="last_change_on" Type="DateTime" Precision="0" />
           <Property Name="extra" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="beg_date" Type="DateTime" Precision="0" />
+          <Property Name="end_date" Type="DateTime" Precision="0" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -88,9 +92,11 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="users">
-            <EntityTypeMapping TypeName="DoorModel.user">
-              <MappingFragment StoreEntitySet="users">
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="DoorModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="end_date" ColumnName="end_date" />
+                <ScalarProperty Name="beg_date" ColumnName="beg_date" />
                 <ScalarProperty Name="extra" ColumnName="extra" />
                 <ScalarProperty Name="last_change_on" ColumnName="last_change_on" />
                 <ScalarProperty Name="last_change_by" ColumnName="last_change_by" />

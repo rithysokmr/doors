@@ -12,7 +12,7 @@ namespace Doors.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class user
+    public partial class User
     {
         public int user_id { get; set; }
         public string username { get; set; }
@@ -26,5 +26,7 @@ namespace Doors.Models
         public string last_change_by { get; set; }
         public Nullable<System.DateTime> last_change_on { get; set; }
         public string extra { get; set; }
+        public Nullable<System.DateTime> beg_date { get; set; }
+        public Nullable<System.DateTime> end_date { get; set; }
     }
 }

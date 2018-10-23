@@ -10,20 +10,27 @@
     <Property Name="version" Type="int" />
     <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
-  <EntityType Name="users">
+  <EntityType Name="Users">
     <Key>
       <PropertyRef Name="user_id" />
     </Key>
     <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="beg_date" Type="date" />
+    <Property Name="end_date" Type="date" />
     <Property Name="username" Type="varchar" MaxLength="50" />
     <Property Name="password" Type="text" />
     <Property Name="fullname" Type="varchar" MaxLength="50" />
     <Property Name="sex" Type="nchar" MaxLength="10" />
     <Property Name="role" Type="nchar" MaxLength="10" />
     <Property Name="personal_info" Type="text" />
+    <Property Name="create_by" Type="varchar" MaxLength="50" />
+    <Property Name="create_on" Type="date" />
+    <Property Name="last_change_by" Type="varchar" MaxLength="50" />
+    <Property Name="last_change_on" Type="date" />
+    <Property Name="extra" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityContainer Name="DoorModelStoreContainer">
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
   </EntityContainer>
 </Schema>

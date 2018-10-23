@@ -7,6 +7,9 @@
 .profile_image, .logo {
     padding-top: 10px;
 }
+.btn-group-sm>.btn, .btn-sm {
+    font-size:12px !important;
+}
 .footer {
     text-align: center;
     vertical-align: middle;
@@ -36,7 +39,12 @@
     border: 1px solid gray;
     line-height: 20px;
 }
-
+.field-validation-error {
+    color: #e88c4d;
+}
+ input.input-validation-error {
+    border: 1px solid #e88c4d;
+}
 
 /* User Management */
 .manage img {
@@ -45,4 +53,13 @@
 }
 .user_table {
     margin-top: 20px;
+}
+.add-new-user-btn {
+    margin:0px 0px 10px 15px;
+}
+
+/* Create User Page */
+.create-user {
+    width: 600px;
+    margin: 0 auto;
 }
