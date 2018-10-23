@@ -26,6 +26,6 @@ namespace Doors.Models
         }
     
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
-        public virtual DbSet<user> users { get; set; }
+        public virtual DbSet<User> Users { get; set; }
     }
 }

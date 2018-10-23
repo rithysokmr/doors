@@ -20,3 +20,4 @@ D:\b.Eurn\system\system\coding\Doors\Doors\bin\EntityFramework.dll
 D:\b.Eurn\system\system\coding\Doors\Doors\bin\EntityFramework.SqlServer.dll
 D:\b.Eurn\system\system\coding\Doors\Doors\bin\EntityFramework.xml
 D:\b.Eurn\system\system\coding\Doors\Doors\bin\EntityFramework.SqlServer.xml
+D:\b.Eurn\system\system\coding\Doors\Doors\bin\System.Linq.Dynamic.dll

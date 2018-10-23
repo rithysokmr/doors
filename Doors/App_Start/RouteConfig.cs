@@ -16,7 +16,7 @@ namespace Doors
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "MasterController", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "UsersController", action = "Index", id = UrlParameter.Optional }
             );
         }
     }
