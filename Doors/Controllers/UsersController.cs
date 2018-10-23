@@ -12,6 +12,7 @@ namespace Doors.Controllers
     public class UsersController : Controller
     {
         DoorEntities db = new DoorEntities();
+        public User temUserData;
         //
         // GET: /Users/
         public ActionResult Index()
@@ -49,7 +50,8 @@ namespace Doors.Controllers
             {
                 using (DoorEntities db = new DoorEntities())
                 {
-                    return View(db.Users.Where( x => x.user_id == id ).FirstOrDefault<User>());
+                    temUserData = db.Users.Where(x => x.user_id == id).FirstOrDefault<User>();
+                    return View(temUserData);
                     //UsersModel userData = new UsersModel();
                     //return View(userData);
                 }
@@ -70,13 +72,28 @@ namespace Doors.Controllers
                     if (userData.user_id == 0)
                     {
                         db.Users.Add(userData);
+
+                        userData.beg_date = DateTime.Now;
+                        userData.end_date = Convert.ToDateTime("May 01 9999");
+                        userData.create_by = "rithy";
+                        userData.create_on = DateTime.Now;
+                        userData.last_change_by = "rithy";
+                        userData.last_change_on = DateTime.Now;
+
                         db.SaveChanges();
                         //return RedirectToAction("Index");
                         return Json(new { success = true, message = "Save Successfully" }, JsonRequestBehavior.AllowGet);
                     }
                     else
                     {
-                        db.Entry(userData).State = EntityState.Modified;
+                        //db.Entry(userData).State = EntityState.Modified;
+                        db.Users.Add(userData);
+                        // modify old data of end date to yesterday
+                        
+                        userData.beg_date = DateTime.Now;
+                        userData.last_change_by = "reach";  //temUserData.create_by;
+                        userData.last_change_on = DateTime.Now;
+
                         db.SaveChanges();
                         return Json(new { success = true, message = "Update Successfully"}, JsonRequestBehavior.AllowGet);
                     }
@@ -99,7 +116,8 @@ namespace Doors.Controllers
             } else {
                 using (DoorEntities db = new DoorEntities())
                 {
-                    return View(db.Users.Where(x => x.user_id == id ).FirstOrDefault<User>());
+                    temUserData = db.Users.Where(x => x.user_id == id).FirstOrDefault<User>();
+                    return View(temUserData);
                 }
                 
             }

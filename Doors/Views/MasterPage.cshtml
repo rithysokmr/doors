@@ -25,38 +25,41 @@
     @RenderSection("head", false)
 </head>
 <body>
-    <div class="container-fluid header">
-        <div class="row">
-            <div class="col-sm-2 logo">
-                <img src="~/images/user.png" class="user_image" />
-            </div>
-            <div class="col-sm-8">
-                <h6>DOORS IMPORT EXPORT & TRANSPORTATION CO.,LTD</h6><hr />
-                <div>#5A, ST.416 SANGKAT TUMNUP TEUK, KHAN CHAMKARMORN PHNOM PENH, CAMBODIA</div>
-                <div>TEL: 017 808 866, 096 613 3333</div>
-            </div>
-            <div class="col-sm-2">
-                <div class="profile_image">
+    <div class="whole-page">
+        <div class="container-fluid header">
+            <div class="row">
+                <div class="col-sm-2 logo">
                     <img src="~/images/user.png" class="user_image" />
                 </div>
-                <div>username</div>
+                <div class="col-sm-8">
+                    <h4>DOORS IMPORT EXPORT & TRANSPORTATION CO.,LTD</h4><hr />
+                    <div>#5A, ST.416 SANGKAT TUMNUP TEUK, KHAN CHAMKARMORN PHNOM PENH, CAMBODIA</div>
+                    <div>TEL: 017 808 866, 096 613 3333</div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="profile_image">
+                        <img src="~/images/user.png" class="user_image" />
+                        <div>Rithy SOK</div>
+                    </div>
+
+                </div>
             </div>
         </div>
-    </div>
-    <div class="body">
-        <div class="menu">
-            @Html.ActionLink("Home", "Index", "Master") |
-            @Html.ActionLink("Debit", "Index", "Master") |
-            @Html.ActionLink("Tax Invoice", "Index", "Master") |
-            @Html.ActionLink("Truck", "Index", "Master") |
-            @Html.ActionLink("Monthly Payment", "Index", "Master") |
-            @Html.ActionLink("User", "Index", "Master")
-        </div>
+        <div class="body">
+            <div class="menu">
+                @Html.ActionLink("Home", "Index", "Master") |
+                @Html.ActionLink("Debit", "Index", "Master") |
+                @Html.ActionLink("Tax Invoice", "Index", "Master") |
+                @Html.ActionLink("Truck", "Index", "Master") |
+                @Html.ActionLink("Monthly Payment", "Index", "Master") |
+                @Html.ActionLink("User", "Index", "Master")
+            </div>
 
-        @RenderBody()
-    </div>
-    <div class="footer">
-       CopyRight DOORS IMPORT EXPORT & TRANSPORTATION CO.,LTD
+            @RenderBody()
+        </div>
+        <div class="footer">
+            CopyRight DOORS IMPORT EXPORT & TRANSPORTATION CO.,LTD
+        </div>
     </div>
 </body>
 </html>

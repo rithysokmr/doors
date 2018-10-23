@@ -11,6 +11,12 @@
     @using (Html.BeginForm("AddEditViewUsers", "Users", FormMethod.Post, new { onsubmit = "return SubmitForm(this)" }))
     {
         @Html.HiddenFor(model => model.user_id)
+        @Html.HiddenFor(model => model.beg_date)
+        @Html.HiddenFor(model => model.end_date)
+        @Html.HiddenFor(model => model.create_by)
+        @Html.HiddenFor(model => model.create_on)
+        @Html.HiddenFor(model => model.last_change_by)
+        @Html.HiddenFor(model => model.last_change_on)
             
         <table>
             <tr>
