@@ -27,7 +27,7 @@ namespace Doors.Controllers
         {
             using (DoorEntities doorDB = new DoorEntities())
             {
-                List<User> UserList = doorDB.Users.ToList<User>();
+                List<User> UserList = doorDB.Users.Where( x => x.end_date > DateTime.Now ).ToList<User>();
                 return Json(new { data = UserList}, JsonRequestBehavior.AllowGet);
             }
         }
@@ -40,8 +40,19 @@ namespace Doors.Controllers
 
         //
         // GET: /Users/Create
-        public ActionResult AddEditViewUsers( int id = 0)
+        public ActionResult EditUsers(int id = 0)
         {
+            //this.AddEditViewUsers(id, "true");  // enable input 
+            return RedirectToAction("AddEditViewUsers", "Users", new { @id = id, @enable = "true" });
+            
+        }
+        public ActionResult ViewUsers(int id = 0)
+        {
+            return RedirectToAction("AddEditViewUsers", "Users", new { @id = id, @enable = "false" });
+        }
+        public ActionResult AddEditViewUsers( int id = 0, string enable = "false")
+        {
+
             if (id == 0)
             {
                 return View();
@@ -50,7 +61,8 @@ namespace Doors.Controllers
             {
                 using (DoorEntities db = new DoorEntities())
                 {
-                    temUserData = db.Users.Where(x => x.user_id == id).FirstOrDefault<User>();
+                    temUserData = db.Users.Where(x => x.user_id == id ).FirstOrDefault<User>();
+                    ViewData["input"] = enable;
                     return View(temUserData);
                     //UsersModel userData = new UsersModel();
                     //return View(userData);
@@ -58,7 +70,14 @@ namespace Doors.Controllers
             }
             
         }
-
+        public User GetUser( int id = 0 )
+        {
+            using (DoorEntities db = new DoorEntities())
+            {
+                User oldUserData = db.Users.Where(x => x.user_id == id).FirstOrDefault<User>();
+                return oldUserData;
+            }
+        }
         //
         // POST: /Users/Create
         [HttpPost]
@@ -87,9 +106,11 @@ namespace Doors.Controllers
                     else
                     {
                         //db.Entry(userData).State = EntityState.Modified;
-                        db.Users.Add(userData);
-                        // modify old data of end date to yesterday
                         
+                        // modify old data of end date to yesterday
+                        this.UpdateOldUserData( userData.user_id );
+
+                        db.Users.Add(userData);
                         userData.beg_date = DateTime.Now;
                         userData.last_change_by = "reach";  //temUserData.create_by;
                         userData.last_change_on = DateTime.Now;
@@ -105,7 +126,13 @@ namespace Doors.Controllers
                 return View();
             }
         }
-
+        public void UpdateOldUserData( int id = 0 )
+        {
+            User old_data = this.GetUser(id);
+            db.Entry(old_data).State = EntityState.Modified;
+            old_data.end_date = DateTime.Now;
+            db.SaveChanges();
+        }
         //
         // GET: /Users/Edit/5
         public ActionResult Edit(int id​​ = 0)
@@ -157,8 +184,14 @@ namespace Doors.Controllers
                 // TODO: Add delete logic here
                 using (DoorEntities db = new DoorEntities())
                 {
-                    User userData = db.Users.Where( x => x.user_id == id).FirstOrDefault<User>();
-                    db.Users.Remove(userData);
+                    //User userData = db.Users.Where( x => x.user_id == id).FirstOrDefault<User>();
+                    //userData.end_date = DateTime.Now;
+                    var userUpdate = new User() { user_id = id, end_date = DateTime.Now, last_change_by = "rithy2", last_change_on = DateTime.Now };
+                    db.Users.Attach(userUpdate);
+                    db.Entry(userUpdate).Property(x => x.end_date).IsModified = true;
+                    db.Entry(userUpdate).Property(x => x.last_change_on).IsModified = true;
+                    db.Entry(userUpdate).Property(x => x.last_change_by).IsModified = true;
+                    //db.Users.Remove(userData);
                     db.SaveChanges();
                     return Json(new { success = true, message = "Delete user successfully"}, JsonRequestBehavior.AllowGet);
                 }

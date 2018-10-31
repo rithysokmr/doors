@@ -49,7 +49,7 @@
                   { "data": "personal_info", "name": "PostalCode", "autoWidth": true },
                   { "data": "create_by", "name": "Country", "autoWidth": true },
                   { "data": "user_id", "render": function(data) {
-                      return '<a class="btn btn-info btn-sm" href="/Users/AddEditViewUsers/' + data + '"><i class="fa fa-pencil"></i> Edit</a><a class="btn btn-info btn-sm" style="margin-left:5px" onclick="DeleteUser(' + data + ')"><i class="fa fa-trash"></i> Delete</a>';
+                      return '<a class="btn btn-info btn-sm" href="/Users/ViewUsers/' + data + '"><i class="fa fa-book"></i> Detail</a><a class="btn btn-info btn-sm" style="margin-left:5px" href="/Users/EditUsers/' + data + '"><i class="fa fa-pencil"></i> Edit</a><a class="btn btn-info btn-sm" style="margin-left:5px; color: red;" onclick="DeleteUser(' + data + ')"><i class="fa fa-trash"></i> Delete</a>';
                     },
                       "orderable": false,
                       "searchable": false,
