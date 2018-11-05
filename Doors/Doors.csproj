@@ -128,6 +128,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\MasterController.cs" />
+    <Compile Include="Controllers\MonthlyPaymentController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -164,6 +165,7 @@
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Users\AddEditViewUsers.cshtml" />
     <Content Include="Views\Users\Edit.cshtml" />
+    <Content Include="Views\MonthlyPayment\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

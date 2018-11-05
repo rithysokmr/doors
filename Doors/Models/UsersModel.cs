@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace Doors.Models
 {
     public class UsersModel
     {
         public int user_id { get; set; }
+        [Remote("IsUserNameExist", "Users", ErrorMessage = "This Username already exist")]
         [Required(ErrorMessage = "Required field")]
         public string username { get; set; }
         [Required(ErrorMessage = "Required field")]

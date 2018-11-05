@@ -70,7 +70,7 @@
 .add-new-user-btn {
     margin:0px 0px 10px 15px;
 }
-
+input:read-only { background: lightgray; }
 /* Create User Page */
 .create-user {
     width: 600px;

@@ -62,8 +62,24 @@ namespace Doors.Controllers
                 using (DoorEntities db = new DoorEntities())
                 {
                     temUserData = db.Users.Where(x => x.user_id == id ).FirstOrDefault<User>();
+                    UsersModel usingData = new UsersModel();
+                    usingData.beg_date = temUserData.beg_date;
+                    usingData.username = temUserData.username;
+                    usingData.user_id = temUserData.user_id;
+                    usingData.username = temUserData.username;
+                    usingData.password = temUserData.password;
+                    usingData.fullname = temUserData.fullname;
+                    usingData.sex = temUserData.sex;
+                    usingData.role = temUserData.role;
+                    usingData.personal_info = temUserData.personal_info;
+                    usingData.last_change_by = temUserData.last_change_by;
+                    usingData.last_change_on = temUserData.last_change_on;
+                    usingData.create_by = temUserData.create_by;
+                    usingData.create_on = temUserData.create_on;
+                    usingData.extra = temUserData.extra;
+
                     ViewData["input"] = enable;
-                    return View(temUserData);
+                    return View(usingData);
                     //UsersModel userData = new UsersModel();
                     //return View(userData);
                 }
@@ -74,15 +90,30 @@ namespace Doors.Controllers
         {
             using (DoorEntities db = new DoorEntities())
             {
-                User oldUserData = db.Users.Where(x => x.user_id == id).FirstOrDefault<User>();
-                return oldUserData;
+                if (id == 0)
+                {
+                    User oldUserData = db.Users.Where(x => x.end_date > DateTime.Now).FirstOrDefault<User>();
+                    return oldUserData;
+                }
+                else
+                {
+                    User oldUserData = db.Users.Where(x => x.user_id == id).FirstOrDefault<User>();
+                    return oldUserData;
+                }
+                
             }
+        }
+        public List<User> GetAllUser()
+        {
+            List<User> UserList = db.Users.Where(x => x.end_date > DateTime.Now).ToList<User>();
+            return UserList;
         }
         //
         // POST: /Users/Create
         [HttpPost]
         public ActionResult AddEditViewUsers(User userData)
         {
+            //var existingUser = true;
             try
             {
                 // TODO: Add insert logic here
@@ -90,19 +121,41 @@ namespace Doors.Controllers
                 {
                     if (userData.user_id == 0)
                     {
+                        /* List<User> allUsers = this.GetAllUser();
+                        foreach (var singleUserData in allUsers)
+                        {
+                            if (singleUserData.username != userData.username)
+                            {
+                                existingUser = false;
+                            }
+                            else
+                            {
+                                existingUser = true;
+                                break;
+                            }
+                        } 
+                        if (existingUser == false)
+                        { 
+                         
+                          }
+                        else
+                        {
+                            return Json(new { warning = true, message = "User is aleady exist" }, JsonRequestBehavior.AllowGet);
+                        }
+                         */
                         db.Users.Add(userData);
 
-                        userData.beg_date = DateTime.Now;
-                        userData.end_date = Convert.ToDateTime("May 01 9999");
-                        userData.create_by = "rithy";
-                        userData.create_on = DateTime.Now;
-                        userData.last_change_by = "rithy";
-                        userData.last_change_on = DateTime.Now;
+                            userData.beg_date = DateTime.Now;
+                            userData.end_date = Convert.ToDateTime("May 01 9999");
+                            userData.create_by = "rithy";
+                            userData.create_on = DateTime.Now;
+                            userData.last_change_by = "rithy";
+                            userData.last_change_on = DateTime.Now;
 
-                        db.SaveChanges();
-                        //return RedirectToAction("Index");
-                        return Json(new { success = true, message = "Save Successfully" }, JsonRequestBehavior.AllowGet);
-                    }
+                            db.SaveChanges();
+                            return Json(new { success = true, message = "Save Successfully" }, JsonRequestBehavior.AllowGet);
+        
+                        }
                     else
                     {
                         //db.Entry(userData).State = EntityState.Modified;
@@ -126,6 +179,15 @@ namespace Doors.Controllers
                 return View();
             }
         }
+        //To check if Username is exist 
+        [HttpGet]
+        public JsonResult IsUserNameExist(string username)
+        {
+            bool check = true;
+            User isExist = db.Users.Where(u => u.username == username).FirstOrDefault<User>();
+            if(isExist == null ) { check = true;} else { check = false; }
+            return Json(check , JsonRequestBehavior.AllowGet);
+        }  
         public void UpdateOldUserData( int id = 0 )
         {
             User old_data = this.GetUser(id);
