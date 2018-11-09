@@ -7,6 +7,9 @@
 .profile_image, .logo {
     padding-top: 10px;
 }
+.profile_image  {
+    text-align: center;
+}
 .logo {
     padding-left:90px;
 }
@@ -70,7 +73,7 @@
 .add-new-user-btn {
     margin:0px 0px 10px 15px;
 }
-
+input:read-only { background: lightgray; }
 /* Create User Page */
 .create-user {
     width: 600px;

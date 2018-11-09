@@ -15,6 +15,7 @@ namespace Doors.Controllers
         public User temUserData;
         //
         // GET: /Users/
+        [Authorize]
         public ActionResult Index()
         {
            // User tbl = new User();
@@ -22,7 +23,7 @@ namespace Doors.Controllers
 
             return View();
         }
-
+        [Authorize]
         public ActionResult LoadUser()
         {
             using (DoorEntities doorDB = new DoorEntities())
@@ -32,25 +33,20 @@ namespace Doors.Controllers
             }
         }
         //
-        // GET: /Users/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        //
-        // GET: /Users/Create
+        // GET: Edit user
         public ActionResult EditUsers(int id = 0)
         {
-            //this.AddEditViewUsers(id, "true");  // enable input 
-            return RedirectToAction("AddEditViewUsers", "Users", new { @id = id, @enable = "true" });
+            return RedirectToAction("AddEditViewUsers", "Users", new { @id = id});
             
         }
+        // GET: View user detail
         public ActionResult ViewUsers(int id = 0)
         {
-            return RedirectToAction("AddEditViewUsers", "Users", new { @id = id, @enable = "false" });
+            return RedirectToAction("AddEditViewUsers", "Users", new { @id = id});
         }
-        public ActionResult AddEditViewUsers( int id = 0, string enable = "false")
+
+        [Authorize]
+        public ActionResult AddEditViewUsers( int id = 0)
         {
 
             if (id == 0)
@@ -62,27 +58,61 @@ namespace Doors.Controllers
                 using (DoorEntities db = new DoorEntities())
                 {
                     temUserData = db.Users.Where(x => x.user_id == id ).FirstOrDefault<User>();
-                    ViewData["input"] = enable;
-                    return View(temUserData);
+                    UsersModel usingData = new UsersModel();
+                    usingData.beg_date = temUserData.beg_date;
+                    usingData.username = temUserData.username;
+                    usingData.user_id = temUserData.user_id;
+                    usingData.username = temUserData.username;
+                    usingData.password = temUserData.password;
+                    usingData.fullname = temUserData.fullname;
+                    usingData.sex = temUserData.sex;
+                    usingData.role = temUserData.role;
+                    usingData.personal_info = temUserData.personal_info;
+                    usingData.last_change_by = temUserData.last_change_by;
+                    usingData.last_change_on = temUserData.last_change_on;
+                    usingData.create_by = temUserData.create_by;
+                    usingData.create_on = temUserData.create_on;
+                    usingData.extra = temUserData.extra;
+
+                    //ViewData["input"] = enable;
+                    return View(usingData);
                     //UsersModel userData = new UsersModel();
                     //return View(userData);
                 }
             }
             
         }
+
         public User GetUser( int id = 0 )
         {
             using (DoorEntities db = new DoorEntities())
             {
-                User oldUserData = db.Users.Where(x => x.user_id == id).FirstOrDefault<User>();
-                return oldUserData;
+                if (id == 0)
+                {
+                    User oldUserData = db.Users.Where(x => x.end_date > DateTime.Now).FirstOrDefault<User>();
+                    return oldUserData;
+                }
+                else
+                {
+                    User oldUserData = db.Users.Where(x => x.user_id == id).FirstOrDefault<User>();
+                    return oldUserData;
+                }
+                
             }
+        }
+
+        public List<User> GetAllUser()
+        {
+            List<User> UserList = db.Users.Where(x => x.end_date > DateTime.Now).ToList<User>();
+            return UserList;
         }
         //
         // POST: /Users/Create
         [HttpPost]
+        [Authorize]
         public ActionResult AddEditViewUsers(User userData)
         {
+            //var existingUser = true;
             try
             {
                 // TODO: Add insert logic here
@@ -92,17 +122,17 @@ namespace Doors.Controllers
                     {
                         db.Users.Add(userData);
 
-                        userData.beg_date = DateTime.Now;
-                        userData.end_date = Convert.ToDateTime("May 01 9999");
-                        userData.create_by = "rithy";
-                        userData.create_on = DateTime.Now;
-                        userData.last_change_by = "rithy";
-                        userData.last_change_on = DateTime.Now;
+                            userData.beg_date = DateTime.Now;
+                            userData.end_date = Convert.ToDateTime("May 01 9999");
+                            userData.create_by = "rithy";
+                            userData.create_on = DateTime.Now;
+                            userData.last_change_by = "rithy";
+                            userData.last_change_on = DateTime.Now;
 
-                        db.SaveChanges();
-                        //return RedirectToAction("Index");
-                        return Json(new { success = true, message = "Save Successfully" }, JsonRequestBehavior.AllowGet);
-                    }
+                            db.SaveChanges();
+                            return Json(new { success = true, message = "Save Successfully" }, JsonRequestBehavior.AllowGet);
+        
+                        }
                     else
                     {
                         //db.Entry(userData).State = EntityState.Modified;
@@ -126,6 +156,17 @@ namespace Doors.Controllers
                 return View();
             }
         }
+        //To check if Username is exist 
+        [HttpGet]
+        public JsonResult IsUserNameExist(string username)
+        {
+            bool check = true;
+            User isExist = db.Users.Where(u => u.username == username).FirstOrDefault<User>();
+            if(isExist == null ) { check = true;} else { check = false; }
+            return Json(check , JsonRequestBehavior.AllowGet);
+        }  
+
+        // Update old data before edit or delete
         public void UpdateOldUserData( int id = 0 )
         {
             User old_data = this.GetUser(id);
@@ -133,50 +174,9 @@ namespace Doors.Controllers
             old_data.end_date = DateTime.Now;
             db.SaveChanges();
         }
-        //
-        // GET: /Users/Edit/5
-        public ActionResult Edit(int id​​ = 0)
-        {
-            if (id == 0)
-            {
-                return View("Index");
-            } else {
-                using (DoorEntities db = new DoorEntities())
-                {
-                    temUserData = db.Users.Where(x => x.user_id == id).FirstOrDefault<User>();
-                    return View(temUserData);
-                }
-                
-            }
-        }
-
-        //
-        // POST: /Users/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        //
-        // GET: /Users/Delete/5
-       /* public ActionResult Delete(int id)
-        {
-            return View();
-        }
-        */
-        //
         // POST: /Users/Delete/5
         [HttpPost]
+        [Authorize]
         public ActionResult Delete(int id)
         {
             try
