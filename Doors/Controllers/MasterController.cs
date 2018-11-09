@@ -14,7 +14,8 @@ namespace Doors.Controllers
     {
         //
         // GET: /Master/
-        public ActionResult Login()
+         [AllowAnonymous]
+        public ActionResult Login(string returnUrl)
         {
             if (Session["UserName"] != null)
             {
@@ -22,6 +23,7 @@ namespace Doors.Controllers
             }
             else
             {
+                ViewBag.ReturnUrl = returnUrl;
                 return View();
             }
             
@@ -33,8 +35,9 @@ namespace Doors.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(LoginModel objUser)
+        public ActionResult Login(LoginModel objUser, string returnUrl)
         {
             if (ModelState.IsValid)
             {
@@ -45,6 +48,12 @@ namespace Doors.Controllers
                     {
                         Session["UserID"] = obj.user_id.ToString();
                         Session["UserName"] = obj.username.ToString();
+                        FormsAuthentication.SetAuthCookie(objUser.username, true);
+                        string ReturnUrl = Convert.ToString(Request.QueryString["url"]);  
+                        if (!string.IsNullOrWhiteSpace(returnUrl))
+                        {
+                            return Redirect(returnUrl);
+                        }
                         return View("Home");
                     }
                 }

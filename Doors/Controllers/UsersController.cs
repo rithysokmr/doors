@@ -15,6 +15,7 @@ namespace Doors.Controllers
         public User temUserData;
         //
         // GET: /Users/
+        [Authorize]
         public ActionResult Index()
         {
            // User tbl = new User();
@@ -22,7 +23,7 @@ namespace Doors.Controllers
 
             return View();
         }
-
+        [Authorize]
         public ActionResult LoadUser()
         {
             using (DoorEntities doorDB = new DoorEntities())
@@ -32,24 +33,18 @@ namespace Doors.Controllers
             }
         }
         //
-        // GET: /Users/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        //
-        // GET: /Users/Create
+        // GET: Edit user
         public ActionResult EditUsers(int id = 0)
         {
-            //this.AddEditViewUsers(id, "true");  // enable input 
             return RedirectToAction("AddEditViewUsers", "Users", new { @id = id});
             
         }
+        // GET: View user detail
         public ActionResult ViewUsers(int id = 0)
         {
             return RedirectToAction("AddEditViewUsers", "Users", new { @id = id});
         }
+
         [Authorize]
         public ActionResult AddEditViewUsers( int id = 0)
         {
@@ -87,6 +82,7 @@ namespace Doors.Controllers
             }
             
         }
+
         public User GetUser( int id = 0 )
         {
             using (DoorEntities db = new DoorEntities())
@@ -104,6 +100,7 @@ namespace Doors.Controllers
                 
             }
         }
+
         public List<User> GetAllUser()
         {
             List<User> UserList = db.Users.Where(x => x.end_date > DateTime.Now).ToList<User>();
@@ -112,6 +109,7 @@ namespace Doors.Controllers
         //
         // POST: /Users/Create
         [HttpPost]
+        [Authorize]
         public ActionResult AddEditViewUsers(User userData)
         {
             //var existingUser = true;
@@ -122,28 +120,6 @@ namespace Doors.Controllers
                 {
                     if (userData.user_id == 0)
                     {
-                        /* List<User> allUsers = this.GetAllUser();
-                        foreach (var singleUserData in allUsers)
-                        {
-                            if (singleUserData.username != userData.username)
-                            {
-                                existingUser = false;
-                            }
-                            else
-                            {
-                                existingUser = true;
-                                break;
-                            }
-                        } 
-                        if (existingUser == false)
-                        { 
-                         
-                          }
-                        else
-                        {
-                            return Json(new { warning = true, message = "User is aleady exist" }, JsonRequestBehavior.AllowGet);
-                        }
-                         */
                         db.Users.Add(userData);
 
                             userData.beg_date = DateTime.Now;
@@ -189,6 +165,8 @@ namespace Doors.Controllers
             if(isExist == null ) { check = true;} else { check = false; }
             return Json(check , JsonRequestBehavior.AllowGet);
         }  
+
+        // Update old data before edit or delete
         public void UpdateOldUserData( int id = 0 )
         {
             User old_data = this.GetUser(id);
@@ -196,50 +174,9 @@ namespace Doors.Controllers
             old_data.end_date = DateTime.Now;
             db.SaveChanges();
         }
-        //
-        // GET: /Users/Edit/5
-        public ActionResult Edit(int id​​ = 0)
-        {
-            if (id == 0)
-            {
-                return View("Index");
-            } else {
-                using (DoorEntities db = new DoorEntities())
-                {
-                    temUserData = db.Users.Where(x => x.user_id == id).FirstOrDefault<User>();
-                    return View(temUserData);
-                }
-                
-            }
-        }
-
-        //
-        // POST: /Users/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        //
-        // GET: /Users/Delete/5
-       /* public ActionResult Delete(int id)
-        {
-            return View();
-        }
-        */
-        //
         // POST: /Users/Delete/5
         [HttpPost]
+        [Authorize]
         public ActionResult Delete(int id)
         {
             try

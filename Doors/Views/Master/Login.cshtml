@@ -6,11 +6,9 @@
 
 <h2>Login </h2>
 <div>
-@using (Html.BeginForm("login", "Master", FormMethod.Post))
+@using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl }))
 {
     @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
-    
 
         <div style="color: red">  
             @ViewBag.Message  
@@ -36,6 +34,7 @@
             <td></td>
         </tr>
     </table>
+    @Html.ValidationSummary(true)
 }
 </div>
 
