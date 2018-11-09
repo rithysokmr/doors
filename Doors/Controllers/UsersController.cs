@@ -43,14 +43,15 @@ namespace Doors.Controllers
         public ActionResult EditUsers(int id = 0)
         {
             //this.AddEditViewUsers(id, "true");  // enable input 
-            return RedirectToAction("AddEditViewUsers", "Users", new { @id = id, @enable = "true" });
+            return RedirectToAction("AddEditViewUsers", "Users", new { @id = id});
             
         }
         public ActionResult ViewUsers(int id = 0)
         {
-            return RedirectToAction("AddEditViewUsers", "Users", new { @id = id, @enable = "false" });
+            return RedirectToAction("AddEditViewUsers", "Users", new { @id = id});
         }
-        public ActionResult AddEditViewUsers( int id = 0, string enable = "false")
+        [Authorize]
+        public ActionResult AddEditViewUsers( int id = 0)
         {
 
             if (id == 0)
@@ -78,7 +79,7 @@ namespace Doors.Controllers
                     usingData.create_on = temUserData.create_on;
                     usingData.extra = temUserData.extra;
 
-                    ViewData["input"] = enable;
+                    //ViewData["input"] = enable;
                     return View(usingData);
                     //UsersModel userData = new UsersModel();
                     //return View(userData);

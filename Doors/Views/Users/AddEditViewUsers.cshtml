@@ -7,7 +7,7 @@
 
 
 <div class="create-user">
-    <h6>Create Users @ViewData["input"] </h6>
+
     @using (Html.BeginForm("AddEditViewUsers", "Users", FormMethod.Post, new { onsubmit = "return SubmitForm(this)" }))
     {
         @Html.HiddenFor(model => model.user_id)

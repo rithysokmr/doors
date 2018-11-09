@@ -7,6 +7,9 @@
 .profile_image, .logo {
     padding-top: 10px;
 }
+.profile_image  {
+    text-align: center;
+}
 .logo {
     padding-left:90px;
 }

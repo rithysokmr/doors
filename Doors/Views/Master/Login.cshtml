@@ -1,0 +1,41 @@
+﻿@model Doors.Models.LoginModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/MasterPage.cshtml";
+}
+
+<h2>Login </h2>
+<div>
+@using (Html.BeginForm("login", "Master", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    
+
+        <div style="color: red">  
+            @ViewBag.Message  
+        </div>  
+    
+    
+    <table>
+        <tr>
+            <td>Username: </td>
+            <td>@Html.TextBoxFor(a => a.username)</td>
+            <td>@Html.ValidationMessageFor(a => a.username)</td>
+        </tr>
+        <tr>
+            <td>Password: </td>
+            <td>@Html.TextBoxFor(a => a.password)</td>     <!-- PasswordFor -->
+            <td>@Html.ValidationMessageFor(a => a.password)</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <input type="submit" value="Login" />
+            </td>
+            <td></td>
+        </tr>
+    </table>
+}
+</div>
+

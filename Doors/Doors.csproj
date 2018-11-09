@@ -148,6 +148,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DoorDB.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>DoorDB.tt</DependentUpon>
     </Compile>
@@ -161,11 +162,12 @@
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
     <Content Include="Views\MasterPage.cshtml" />
-    <Content Include="Views\Master\LoginPage.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Users\AddEditViewUsers.cshtml" />
     <Content Include="Views\Users\Edit.cshtml" />
     <Content Include="Views\MonthlyPayment\Index.cshtml" />
+    <Content Include="Views\Master\Home.cshtml" />
+    <Content Include="Views\Master\Login.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
