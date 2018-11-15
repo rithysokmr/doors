@@ -6,7 +6,9 @@
     <edmx:Diagrams>
       <Diagram DiagramId="3234f82a2af949a8aa226147f61bc7ec" Name="Diagram1">
         <EntityTypeShape EntityType="DoorModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DoorModel.User" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="DoorModel.User" Width="1.5" PointX="2.5" PointY="0.75" />
+        <EntityTypeShape EntityType="DoorModel.Debit_Note" Width="1.5" PointX="4.375" PointY="0.75" />
+        <EntityTypeShape EntityType="DoorModel.Debit_Product" Width="1.5" PointX="6.25" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -127,6 +127,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\DebitNoteController.cs" />
     <Compile Include="Controllers\MasterController.cs" />
     <Compile Include="Controllers\MonthlyPaymentController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
@@ -168,6 +169,8 @@
     <Content Include="Views\MonthlyPayment\Index.cshtml" />
     <Content Include="Views\Master\Home.cshtml" />
     <Content Include="Views\Master\Login.cshtml" />
+    <Content Include="Views\DebitNote\Index.cshtml" />
+    <Content Include="Views\DebitNote\AddEditViewDebit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

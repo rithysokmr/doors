@@ -5,6 +5,53 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="DoorModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Debit_Note">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="debit_id" Type="int" Nullable="false" />
+          <Property Name="start_date" Type="datetime" />
+          <Property Name="end_date" Type="datetime" />
+          <Property Name="create_by" Type="varchar" MaxLength="255" />
+          <Property Name="create_on" Type="datetime" />
+          <Property Name="edit_by" Type="varchar" MaxLength="255" />
+          <Property Name="paying_date" Type="datetime" />
+          <Property Name="reference" Type="varchar" MaxLength="255" />
+          <Property Name="record_date" Type="datetime" />
+          <Property Name="customer_name" Type="varchar" MaxLength="255" />
+          <Property Name="billing_to" Type="varchar" MaxLength="255" />
+          <Property Name="cust_address" Type="text" />
+          <Property Name="customer_phone" Type="varchar" MaxLength="50" />
+          <Property Name="bl" Type="varchar" MaxLength="50" />
+          <Property Name="container_number" Type="varchar" MaxLength="50" />
+          <Property Name="commodity" Type="varchar" MaxLength="50" />
+          <Property Name="package_number" Type="varchar" MaxLength="50" />
+          <Property Name="vessel" Type="varchar" MaxLength="50" />
+          <Property Name="voy" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Door.dbo.Debit_Product' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Debit_Product">
+          <Key>
+            <PropertyRef Name="product_id" />
+            <PropertyRef Name="debit_id" />
+            <PropertyRef Name="debit_full_id" />
+          </Key>
+          <Property Name="product_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="debit_id" Type="int" Nullable="false" />
+          <Property Name="debit_full_id" Type="int" Nullable="false" />
+          <Property Name="order_number" Type="int" />
+          <Property Name="edit_by" Type="varchar" MaxLength="255" />
+          <Property Name="edit_on" Type="datetime" />
+          <Property Name="product_name" Type="text" />
+          <Property Name="product_amount" Type="float" />
+          <Property Name="product_amount_type" Type="varchar" MaxLength="50" />
+          <Property Name="pro_unit_price" Type="float" />
+          <Property Name="vate" Type="float" />
+          <Property Name="total_price" Type="float" />
+          <Property Name="extra" Type="text" />
+        </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -35,8 +82,26 @@
           <Property Name="extra" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityContainer Name="DoorModelStoreContainer">
+          <EntitySet Name="Debit_Note" EntityType="Self.Debit_Note" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Debit_Product" EntityType="Self.Debit_Product" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Debit_Product].[product_id] AS [product_id], 
+    [Debit_Product].[debit_id] AS [debit_id], 
+    [Debit_Product].[debit_full_id] AS [debit_full_id], 
+    [Debit_Product].[order_number] AS [order_number], 
+    [Debit_Product].[edit_by] AS [edit_by], 
+    [Debit_Product].[edit_on] AS [edit_on], 
+    [Debit_Product].[product_name] AS [product_name], 
+    [Debit_Product].[product_amount] AS [product_amount], 
+    [Debit_Product].[product_amount_type] AS [product_amount_type], 
+    [Debit_Product].[pro_unit_price] AS [pro_unit_price], 
+    [Debit_Product].[vate] AS [vate], 
+    [Debit_Product].[total_price] AS [total_price], 
+    [Debit_Product].[extra] AS [extra]
+    FROM [dbo].[Debit_Product] AS [Debit_Product]</DefiningQuery>
+          </EntitySet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -55,6 +120,8 @@
         <EntityContainer Name="DoorEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="Users" EntityType="DoorModel.User" />
+          <EntitySet Name="Debit_Note" EntityType="DoorModel.Debit_Note" />
+          <EntitySet Name="Debit_Product" EntityType="DoorModel.Debit_Product" />
         </EntityContainer>
         <EntityType Name="User">
           <Key>
@@ -74,6 +141,51 @@
           <Property Name="extra" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="beg_date" Type="DateTime" Precision="0" />
           <Property Name="end_date" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="Debit_Note">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="debit_id" Type="Int32" Nullable="false" />
+          <Property Name="start_date" Type="DateTime" Precision="3" />
+          <Property Name="end_date" Type="DateTime" Precision="3" />
+          <Property Name="create_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="create_on" Type="DateTime" Precision="3" />
+          <Property Name="edit_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="paying_date" Type="DateTime" Precision="3" />
+          <Property Name="reference" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="record_date" Type="DateTime" Precision="3" />
+          <Property Name="customer_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="billing_to" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="cust_address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="customer_phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="bl" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="container_number" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="commodity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="package_number" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="vessel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="voy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Debit_Product">
+          <Key>
+            <PropertyRef Name="product_id" />
+            <PropertyRef Name="debit_id" />
+            <PropertyRef Name="debit_full_id" />
+          </Key>
+          <Property Name="product_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="debit_id" Type="Int32" Nullable="false" />
+          <Property Name="debit_full_id" Type="Int32" Nullable="false" />
+          <Property Name="order_number" Type="Int32" />
+          <Property Name="edit_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="edit_on" Type="DateTime" Precision="3" />
+          <Property Name="product_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="product_amount" Type="Double" />
+          <Property Name="product_amount_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="pro_unit_price" Type="Double" />
+          <Property Name="vate" Type="Double" />
+          <Property Name="total_price" Type="Double" />
+          <Property Name="extra" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -109,6 +221,51 @@
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="username" ColumnName="username" />
                 <ScalarProperty Name="user_id" ColumnName="user_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Debit_Note">
+            <EntityTypeMapping TypeName="DoorModel.Debit_Note">
+              <MappingFragment StoreEntitySet="Debit_Note">
+                <ScalarProperty Name="voy" ColumnName="voy" />
+                <ScalarProperty Name="vessel" ColumnName="vessel" />
+                <ScalarProperty Name="package_number" ColumnName="package_number" />
+                <ScalarProperty Name="commodity" ColumnName="commodity" />
+                <ScalarProperty Name="container_number" ColumnName="container_number" />
+                <ScalarProperty Name="bl" ColumnName="bl" />
+                <ScalarProperty Name="customer_phone" ColumnName="customer_phone" />
+                <ScalarProperty Name="cust_address" ColumnName="cust_address" />
+                <ScalarProperty Name="billing_to" ColumnName="billing_to" />
+                <ScalarProperty Name="customer_name" ColumnName="customer_name" />
+                <ScalarProperty Name="record_date" ColumnName="record_date" />
+                <ScalarProperty Name="reference" ColumnName="reference" />
+                <ScalarProperty Name="paying_date" ColumnName="paying_date" />
+                <ScalarProperty Name="edit_by" ColumnName="edit_by" />
+                <ScalarProperty Name="create_on" ColumnName="create_on" />
+                <ScalarProperty Name="create_by" ColumnName="create_by" />
+                <ScalarProperty Name="end_date" ColumnName="end_date" />
+                <ScalarProperty Name="start_date" ColumnName="start_date" />
+                <ScalarProperty Name="debit_id" ColumnName="debit_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Debit_Product">
+            <EntityTypeMapping TypeName="DoorModel.Debit_Product">
+              <MappingFragment StoreEntitySet="Debit_Product">
+                <ScalarProperty Name="extra" ColumnName="extra" />
+                <ScalarProperty Name="total_price" ColumnName="total_price" />
+                <ScalarProperty Name="vate" ColumnName="vate" />
+                <ScalarProperty Name="pro_unit_price" ColumnName="pro_unit_price" />
+                <ScalarProperty Name="product_amount_type" ColumnName="product_amount_type" />
+                <ScalarProperty Name="product_amount" ColumnName="product_amount" />
+                <ScalarProperty Name="product_name" ColumnName="product_name" />
+                <ScalarProperty Name="edit_on" ColumnName="edit_on" />
+                <ScalarProperty Name="edit_by" ColumnName="edit_by" />
+                <ScalarProperty Name="order_number" ColumnName="order_number" />
+                <ScalarProperty Name="debit_full_id" ColumnName="debit_full_id" />
+                <ScalarProperty Name="debit_id" ColumnName="debit_id" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
