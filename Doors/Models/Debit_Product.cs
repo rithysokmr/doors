@@ -15,8 +15,8 @@ namespace Doors.Models
     public partial class Debit_Product
     {
         public int product_id { get; set; }
-        public int debit_id { get; set; }
-        public int debit_full_id { get; set; }
+        public Nullable<int> debit_id { get; set; }
+        public Nullable<int> debit_full_id { get; set; }
         public Nullable<int> order_number { get; set; }
         public string edit_by { get; set; }
         public Nullable<System.DateTime> edit_on { get; set; }

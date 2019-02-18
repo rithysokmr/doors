@@ -1,0 +1,238 @@
+﻿@model Doors.Models.DebitNoteProductModel
+@{
+    ViewBag.Title = "AddEditViewDebit";
+    Layout = "~/Views/MasterPage.cshtml";
+}
+
+<h5 style="text-align: center;">Add New Debit Note </h5>
+<div class="create-user">
+@using (Html.BeginForm("Create", "DebitNote", FormMethod.Post, new { onsubmit = "return SubmitForm(this)" }))
+        {
+    
+    <div class="btn-control">
+        <input type="submit" value="Add Debit" class="btn btn-primary btn-sm" />
+        <a href="/DebitNote/AddEditViewDebitNote" class="btn btn-info btn-sm"><i class="fa fa-plus"></i>Edit</a>
+        <a href="/DebitNote/AddEditViewDebitNote" class="btn btn-info btn-sm"><i class="fa fa-plus"></i>Save</a>
+        <a href="/DebitNote/AddEditViewDebitNote" class="btn btn-info btn-sm"><i class="fa fa-plus"></i>Print</a>
+        <a href="/DebitNote/AddEditViewDebitNote" class="btn btn-info btn-sm"><i class="fa fa-plus"></i>Go to Tax Invoice</a>
+    </div>
+    <div class="debit-cover">
+        
+            <div class="debit-left">
+                @Html.HiddenFor(model => model.Debit_Note.id)
+                <table>
+                    <tr>
+                        <td>Customer:</td>
+                        <td>
+                            @Html.EditorFor(model => model.Debit_Note.customer_name, new { htmlAttributes = new { @class = "form-control" }, @readonly = "readonly" })
+                            @Html.ValidationMessageFor(model => model.Debit_Note.customer_name)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Bill To:</td>
+                        <td>
+                            @Html.EditorFor(model => model.Debit_Note.billing_to, new { htmlAttributes = new { @class = "form-control" }, @readonly = "readonly" })
+                            @Html.ValidationMessageFor(model => model.Debit_Note.billing_to)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Adddress:</td>
+                        <td>
+                            @Html.EditorFor(model => model.Debit_Note.cust_address, new { htmlAttributes = new { @class = "form-control" }, @readonly = "readonly" })
+                            @Html.ValidationMessageFor(model => model.Debit_Note.cust_address)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Tellphone:</td>
+                        <td>
+                            @Html.EditorFor(model => model.Debit_Note.customer_phone, new { htmlAttributes = new { @class = "form-control" }, @readonly = "readonly" })
+                            @Html.ValidationMessageFor(model => model.Debit_Note.customer_phone)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>B/L:</td>
+                        <td>
+                            @Html.EditorFor(model => model.Debit_Note.bl, new { htmlAttributes = new { @class = "form-control" }, @readonly = "readonly" })
+                            @Html.ValidationMessageFor(model => model.Debit_Note.bl)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Container No:</td>
+                        <td>
+                            @Html.EditorFor(model => model.Debit_Note.container_number, new { htmlAttributes = new { @class = "form-control" }, @readonly = "readonly" })
+                            @Html.ValidationMessageFor(model => model.Debit_Note.container_number)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Commodity:</td>
+                        <td>
+                            @Html.EditorFor(model => model.Debit_Note.commodity, new { htmlAttributes = new { @class = "form-control" }, @readonly = "readonly" })
+                            @Html.ValidationMessageFor(model => model.Debit_Note.commodity)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Number of Package:</td>
+                        <td>
+                            @Html.EditorFor(model => model.Debit_Note.package_number, new { htmlAttributes = new { @class = "form-control" }, @readonly = "readonly" })
+                            @Html.ValidationMessageFor(model => model.Debit_Note.package_number)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Vessel:</td>
+                        <td>
+                            @Html.EditorFor(model => model.Debit_Note.vessel, new { htmlAttributes = new { @class = "form-control" }, @readonly = "readonly" })
+                            @Html.ValidationMessageFor(model => model.Debit_Note.vessel)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Voy:</td>
+                        <td>
+                            @Html.EditorFor(model => model.Debit_Note.voy, new { htmlAttributes = new { @class = "form-control" }, @readonly = "readonly" })
+                            @Html.ValidationMessageFor(model => model.Debit_Note.voy)
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
+            <div class="debit-right">
+                <table>
+                    <tr>
+                        <td>No:</td>
+                        <td>
+                            @Html.EditorFor(model => model.Debit_Note.debit_fullId, new { htmlAttributes = new { @class = "form-control" }, @readonly = "readonly" })
+                            @Html.ValidationMessageFor(model => model.Debit_Note.debit_fullId)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Date:</td>
+                        <td>
+                            @Html.EditorFor(model => model.Debit_Note.paying_date, new { htmlAttributes = new { @class = "form-control" }, @readonly = "readonly" })
+                            @Html.ValidationMessageFor(model => model.Debit_Note.paying_date)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Ref:</td>
+                        <td>
+                            @Html.EditorFor(model => model.Debit_Note.reference, new { htmlAttributes = new { @class = "form-control" }, @readonly = "readonly" })
+                            @Html.ValidationMessageFor(model => model.Debit_Note.reference)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Date:</td>
+                        <td>
+                            @Html.EditorFor(model => model.Debit_Note.record_date, new { htmlAttributes = new { @class = "form-control" }, @readonly = "readonly" })
+                            @Html.ValidationMessageFor(model => model.Debit_Note.record_date)
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
+       
+    </div>
+  }
+    <div class="debit_product">
+        <button onclick="AddEditDebitProduct(0)" class="btn btn-info btn-sm"><i class="fa fa-plus"></i>Add Product</button>
+        <table class="table table-striped table-bordered dt-responsive nowrap table-sm" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Description</th>
+                    <th>Quantity</th>
+                    <th>Type</th>
+                    <th>Unit Price</th>
+                    <th>VAT(10%)</th>
+                    <th>Amount</th>
+                    <th>Manage</th>
+                </tr>
+            </thead>
+            <tbody id="SetProductList">
+            @if (Model != null)
+            {
+                foreach (var item in Model.DebitProductList)
+                  { 
+                    <tr>
+                        <th>1</th>
+                        <th>@Html.DisplayFor(modelItem => item.product_name)</th>
+                        <th>@Html.DisplayFor(modelItem => item.product_amount)</th>
+                        <th>@Html.DisplayFor(modelItem => item.product_amount_type)</th>
+                        <th>@Html.DisplayFor(modelItem => item.pro_unit_price)</th>
+                        <th>@Html.DisplayFor(modelItem => item.vate)</th>
+                        <th>@Html.DisplayFor(modelItem => item.total_price)</th>
+                        <th><p>Edit</p></th>
+                    </tr>
+                  }
+                
+              }
+                <tr>
+                    <td colspan="6">Sub Total</td>
+                    <td>400$</td>
+                    <td>400$</td>
+                </tr>
+                <tr>
+                    <td colspan="6">Advance</td>
+                    <td>@Html.EditorFor(model => model.Debit_Note.advance_money, new { htmlAttributes = new { @class = "form-control" }, @readonly = "readonly" })</td>
+                    <td>@Html.EditorFor(model => model.Debit_Note.advance_money, new { htmlAttributes = new { @class = "form-control" }, @readonly = "readonly" })</td>
+                </tr>
+                <tr>
+                    <td colspan="6">Grand Total</td>
+                    <td>400$</td>
+                    <td>400$</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+        
+    <div class="debit-foot">
+        <p>Say in USA: Four Tousand</p>
+        <h3>Not for Tax Declaration</h3>
+    </div>
+</div>
+
+<div id="products" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 id="ModalTitle">Add/Edit Product</h4>
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+            </div>
+            <div class="modal-body" id="ModelBody">
+                
+            </div>
+        </div>
+
+    </div>
+</div>
+<input type="hidden" id="hiddenProductID"/>
+@{
+    <script>
+        function SubmitForm(form) {
+            $.validator.unobtrusive.parse(form);
+            if ($(form).valid()) {
+                $.ajax({
+                    type: "POST",
+                    url: form.action,
+                    data: $(form).serialize(),
+                    success: function (data) {
+                        if (data.success) {
+                            $.notify(data.message, {
+                                globalPosition: "Top Center",
+                                className: "success"
+                            });
+                        }
+                    }
+                });
+            }
+            return false;
+        }
+
+        function AddEditDebitProduct(productID) {
+            var url = "/DebitNote/AddEditDebitProduct?productID=" + productID;
+            $("#ModalTitle").html("Add New Product");
+            $("#ModelBody").load(url, function () {
+                $("#products").modal("show");
+            })
+            
+        }
+    </script>
+}
+

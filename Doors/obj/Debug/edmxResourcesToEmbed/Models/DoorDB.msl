@@ -32,5 +32,78 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Debit_Note">
+      <EntityTypeMapping TypeName="DoorModel.Debit_Note">
+        <MappingFragment StoreEntitySet="Debit_Note">
+          <ScalarProperty Name="debit_fullId" ColumnName="debit_fullId" />
+          <ScalarProperty Name="advance_money" ColumnName="advance_money" />
+          <ScalarProperty Name="voy" ColumnName="voy" />
+          <ScalarProperty Name="vessel" ColumnName="vessel" />
+          <ScalarProperty Name="package_number" ColumnName="package_number" />
+          <ScalarProperty Name="commodity" ColumnName="commodity" />
+          <ScalarProperty Name="container_number" ColumnName="container_number" />
+          <ScalarProperty Name="bl" ColumnName="bl" />
+          <ScalarProperty Name="customer_phone" ColumnName="customer_phone" />
+          <ScalarProperty Name="cust_address" ColumnName="cust_address" />
+          <ScalarProperty Name="billing_to" ColumnName="billing_to" />
+          <ScalarProperty Name="customer_name" ColumnName="customer_name" />
+          <ScalarProperty Name="record_date" ColumnName="record_date" />
+          <ScalarProperty Name="reference" ColumnName="reference" />
+          <ScalarProperty Name="paying_date" ColumnName="paying_date" />
+          <ScalarProperty Name="edit_by" ColumnName="edit_by" />
+          <ScalarProperty Name="create_on" ColumnName="create_on" />
+          <ScalarProperty Name="create_by" ColumnName="create_by" />
+          <ScalarProperty Name="end_date" ColumnName="end_date" />
+          <ScalarProperty Name="start_date" ColumnName="start_date" />
+          <ScalarProperty Name="debit_id" ColumnName="debit_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Trucks">
+      <EntityTypeMapping TypeName="DoorModel.Truck">
+        <MappingFragment StoreEntitySet="Truck">
+          <ScalarProperty Name="income_per_truck" ColumnName="income_per_truck" />
+          <ScalarProperty Name="other_payment" ColumnName="other_payment" />
+          <ScalarProperty Name="gasolin_money" ColumnName="gasolin_money" />
+          <ScalarProperty Name="road_money" ColumnName="road_money" />
+          <ScalarProperty Name="extra" ColumnName="extra" />
+          <ScalarProperty Name="export_item_place" ColumnName="export_item_place" />
+          <ScalarProperty Name="import_item_place" ColumnName="import_item_place" />
+          <ScalarProperty Name="container_amount" ColumnName="container_amount" />
+          <ScalarProperty Name="container_net_size" ColumnName="container_net_size" />
+          <ScalarProperty Name="container_size" ColumnName="container_size" />
+          <ScalarProperty Name="container_number" ColumnName="container_number" />
+          <ScalarProperty Name="truck_sign_number" ColumnName="truck_sign_number" />
+          <ScalarProperty Name="transport_date" ColumnName="transport_date" />
+          <ScalarProperty Name="change_on" ColumnName="change_on" />
+          <ScalarProperty Name="change_by" ColumnName="change_by" />
+          <ScalarProperty Name="create_on" ColumnName="create_on" />
+          <ScalarProperty Name="create_by" ColumnName="create_by" />
+          <ScalarProperty Name="end_date" ColumnName="end_date" />
+          <ScalarProperty Name="bed_date" ColumnName="bed_date" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Debit_Product">
+      <EntityTypeMapping TypeName="DoorModel.Debit_Product">
+        <MappingFragment StoreEntitySet="Debit_Product">
+          <ScalarProperty Name="extra" ColumnName="extra" />
+          <ScalarProperty Name="total_price" ColumnName="total_price" />
+          <ScalarProperty Name="vate" ColumnName="vate" />
+          <ScalarProperty Name="pro_unit_price" ColumnName="pro_unit_price" />
+          <ScalarProperty Name="product_amount_type" ColumnName="product_amount_type" />
+          <ScalarProperty Name="product_amount" ColumnName="product_amount" />
+          <ScalarProperty Name="product_name" ColumnName="product_name" />
+          <ScalarProperty Name="edit_on" ColumnName="edit_on" />
+          <ScalarProperty Name="edit_by" ColumnName="edit_by" />
+          <ScalarProperty Name="order_number" ColumnName="order_number" />
+          <ScalarProperty Name="debit_full_id" ColumnName="debit_full_id" />
+          <ScalarProperty Name="debit_id" ColumnName="debit_id" />
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -20,5 +21,6 @@ namespace Doors.Models
         public Nullable<double> vate { get; set; }
         public Nullable<double> total_price { get; set; }
         public string extra { get; set; }
+
     }
 }

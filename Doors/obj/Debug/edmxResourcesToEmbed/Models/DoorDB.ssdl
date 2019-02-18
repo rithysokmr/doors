@@ -1,5 +1,50 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="DoorModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Debit_Note">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="debit_id" Type="int" Nullable="false" />
+    <Property Name="debit_fullId" Type="varchar" MaxLength="50" />
+    <Property Name="start_date" Type="datetime" />
+    <Property Name="end_date" Type="datetime" />
+    <Property Name="create_by" Type="varchar" MaxLength="255" />
+    <Property Name="create_on" Type="datetime" />
+    <Property Name="edit_by" Type="varchar" MaxLength="255" />
+    <Property Name="paying_date" Type="datetime" />
+    <Property Name="reference" Type="varchar" MaxLength="255" />
+    <Property Name="record_date" Type="datetime" />
+    <Property Name="customer_name" Type="varchar" MaxLength="255" />
+    <Property Name="billing_to" Type="varchar" MaxLength="255" />
+    <Property Name="cust_address" Type="text" />
+    <Property Name="customer_phone" Type="varchar" MaxLength="50" />
+    <Property Name="bl" Type="varchar" MaxLength="50" />
+    <Property Name="container_number" Type="varchar" MaxLength="50" />
+    <Property Name="commodity" Type="varchar" MaxLength="50" />
+    <Property Name="package_number" Type="varchar" MaxLength="50" />
+    <Property Name="vessel" Type="varchar" MaxLength="50" />
+    <Property Name="voy" Type="varchar" MaxLength="50" />
+    <Property Name="advance_money" Type="float" />
+  </EntityType>
+  <EntityType Name="Debit_Product">
+    <Key>
+      <PropertyRef Name="product_id" />
+    </Key>
+    <Property Name="product_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="debit_id" Type="int" />
+    <Property Name="debit_full_id" Type="int" />
+    <Property Name="order_number" Type="int" />
+    <Property Name="edit_by" Type="varchar" MaxLength="255" />
+    <Property Name="edit_on" Type="datetime" />
+    <Property Name="product_name" Type="text" />
+    <Property Name="product_amount" Type="float" />
+    <Property Name="product_amount_type" Type="varchar" MaxLength="50" />
+    <Property Name="pro_unit_price" Type="float" />
+    <Property Name="vate" Type="float" />
+    <Property Name="total_price" Type="float" />
+    <Property Name="extra" Type="text" />
+  </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
       <PropertyRef Name="diagram_id" />
@@ -9,6 +54,31 @@
     <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="version" Type="int" />
     <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Truck">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="bed_date" Type="datetime" />
+    <Property Name="end_date" Type="datetime" />
+    <Property Name="create_by" Type="varchar" MaxLength="200" />
+    <Property Name="create_on" Type="datetime" />
+    <Property Name="change_by" Type="varchar" MaxLength="200" />
+    <Property Name="change_on" Type="datetime" />
+    <Property Name="transport_date" Type="datetime" />
+    <Property Name="truck_sign_number" Type="varchar" MaxLength="50" />
+    <Property Name="container_number" Type="varchar" MaxLength="50" />
+    <Property Name="container_size" Type="varchar" MaxLength="50" />
+    <Property Name="container_net_size" Type="varchar" MaxLength="50" />
+    <Property Name="container_amount" Type="varchar" MaxLength="50" />
+    <Property Name="import_item_place" Type="varchar" MaxLength="250" />
+    <Property Name="export_item_place" Type="varchar" MaxLength="250" />
+    <Property Name="extra" Type="varchar" MaxLength="250" />
+    <Property Name="road_money" Type="float" />
+    <Property Name="gasolin_money" Type="float" />
+    <Property Name="other_payment" Type="float" />
+    <Property Name="income_per_truck" Type="float" />
   </EntityType>
   <EntityType Name="Users">
     <Key>
@@ -30,7 +100,10 @@
     <Property Name="extra" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityContainer Name="DoorModelStoreContainer">
+    <EntitySet Name="Debit_Note" EntityType="Self.Debit_Note" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Debit_Product" EntityType="Self.Debit_Product" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Truck" EntityType="Self.Truck" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
   </EntityContainer>
 </Schema>

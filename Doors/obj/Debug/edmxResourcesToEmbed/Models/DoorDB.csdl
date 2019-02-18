@@ -13,6 +13,9 @@
   <EntityContainer Name="DoorEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
     <EntitySet Name="Users" EntityType="DoorModel.User" />
+    <EntitySet Name="Debit_Note" EntityType="DoorModel.Debit_Note" />
+    <EntitySet Name="Trucks" EntityType="DoorModel.Truck" />
+    <EntitySet Name="Debit_Product" EntityType="DoorModel.Debit_Product" />
   </EntityContainer>
   <EntityType Name="User">
     <Key>
@@ -32,5 +35,75 @@
     <Property Name="extra" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="beg_date" Type="DateTime" Precision="0" />
     <Property Name="end_date" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityType Name="Debit_Note">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="debit_id" Type="Int32" Nullable="false" />
+    <Property Name="start_date" Type="DateTime" Precision="3" />
+    <Property Name="end_date" Type="DateTime" Precision="3" />
+    <Property Name="create_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="create_on" Type="DateTime" Precision="3" />
+    <Property Name="edit_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="paying_date" Type="DateTime" Precision="3" />
+    <Property Name="reference" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="record_date" Type="DateTime" Precision="3" />
+    <Property Name="customer_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="billing_to" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="cust_address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="customer_phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="bl" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="container_number" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="commodity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="package_number" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="vessel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="voy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="advance_money" Type="Double" />
+    <Property Name="debit_fullId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Truck">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="bed_date" Type="DateTime" Precision="3" />
+    <Property Name="end_date" Type="DateTime" Precision="3" />
+    <Property Name="create_by" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="create_on" Type="DateTime" Precision="3" />
+    <Property Name="change_by" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="change_on" Type="DateTime" Precision="3" />
+    <Property Name="transport_date" Type="DateTime" Precision="3" />
+    <Property Name="truck_sign_number" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="container_number" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="container_size" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="container_net_size" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="container_amount" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="import_item_place" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="export_item_place" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="extra" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="road_money" Type="Double" />
+    <Property Name="gasolin_money" Type="Double" />
+    <Property Name="other_payment" Type="Double" />
+    <Property Name="income_per_truck" Type="Double" />
+  </EntityType>
+  <EntityType Name="Debit_Product">
+    <Key>
+      <PropertyRef Name="product_id" />
+    </Key>
+    <Property Name="product_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="debit_id" Type="Int32" />
+    <Property Name="debit_full_id" Type="Int32" />
+    <Property Name="order_number" Type="Int32" />
+    <Property Name="edit_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="edit_on" Type="DateTime" Precision="3" />
+    <Property Name="product_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="product_amount" Type="Double" />
+    <Property Name="product_amount_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="pro_unit_price" Type="Double" />
+    <Property Name="vate" Type="Double" />
+    <Property Name="total_price" Type="Double" />
+    <Property Name="extra" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
   </EntityType>
 </Schema>

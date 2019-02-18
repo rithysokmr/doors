@@ -130,9 +130,19 @@
     <Compile Include="Controllers\DebitNoteController.cs" />
     <Compile Include="Controllers\MasterController.cs" />
     <Compile Include="Controllers\MonthlyPaymentController.cs" />
+    <Compile Include="Controllers\TruckController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DebitNoteProductModel.cs" />
+    <Compile Include="Models\DebitProductModel.cs" />
+    <Compile Include="Models\Debit_Note.cs">
+      <DependentUpon>DoorDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DebitNoteModel.cs" />
+    <Compile Include="Models\Debit_Product.cs">
+      <DependentUpon>DoorDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DoorDB.Context.cs">
       <AutoGen>True</AutoGen>
@@ -153,6 +163,9 @@
     <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>DoorDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Truck.cs">
+      <DependentUpon>DoorDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\User.cs">
       <DependentUpon>DoorDB.tt</DependentUpon>
     </Compile>
@@ -170,7 +183,12 @@
     <Content Include="Views\Master\Home.cshtml" />
     <Content Include="Views\Master\Login.cshtml" />
     <Content Include="Views\DebitNote\Index.cshtml" />
-    <Content Include="Views\DebitNote\AddEditViewDebit.cshtml" />
+    <Content Include="Views\DebitNote\Create.cshtml" />
+    <Content Include="Views\Truck\Index.cshtml" />
+    <Content Include="Views\Truck\AddEditViewTruck.cshtml" />
+    <Content Include="Views\DebitNote\Edit.cshtml" />
+    <Content Include="Views\DebitNote\DebitProduct.cshtml" />
+    <Content Include="Views\DebitNote\product.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

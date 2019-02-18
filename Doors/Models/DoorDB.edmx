@@ -11,6 +11,7 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="debit_id" Type="int" Nullable="false" />
+          <Property Name="debit_fullId" Type="varchar" MaxLength="50" />
           <Property Name="start_date" Type="datetime" />
           <Property Name="end_date" Type="datetime" />
           <Property Name="create_by" Type="varchar" MaxLength="255" />
@@ -29,18 +30,15 @@
           <Property Name="package_number" Type="varchar" MaxLength="50" />
           <Property Name="vessel" Type="varchar" MaxLength="50" />
           <Property Name="voy" Type="varchar" MaxLength="50" />
+          <Property Name="advance_money" Type="float" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'Door.dbo.Debit_Product' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Debit_Product">
           <Key>
             <PropertyRef Name="product_id" />
-            <PropertyRef Name="debit_id" />
-            <PropertyRef Name="debit_full_id" />
           </Key>
           <Property Name="product_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="debit_id" Type="int" Nullable="false" />
-          <Property Name="debit_full_id" Type="int" Nullable="false" />
+          <Property Name="debit_id" Type="int" />
+          <Property Name="debit_full_id" Type="int" />
           <Property Name="order_number" Type="int" />
           <Property Name="edit_by" Type="varchar" MaxLength="255" />
           <Property Name="edit_on" Type="datetime" />
@@ -61,6 +59,31 @@ warning 6002: The table/view 'Door.dbo.Debit_Product' does not have a primary ke
           <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Truck">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="bed_date" Type="datetime" />
+          <Property Name="end_date" Type="datetime" />
+          <Property Name="create_by" Type="varchar" MaxLength="200" />
+          <Property Name="create_on" Type="datetime" />
+          <Property Name="change_by" Type="varchar" MaxLength="200" />
+          <Property Name="change_on" Type="datetime" />
+          <Property Name="transport_date" Type="datetime" />
+          <Property Name="truck_sign_number" Type="varchar" MaxLength="50" />
+          <Property Name="container_number" Type="varchar" MaxLength="50" />
+          <Property Name="container_size" Type="varchar" MaxLength="50" />
+          <Property Name="container_net_size" Type="varchar" MaxLength="50" />
+          <Property Name="container_amount" Type="varchar" MaxLength="50" />
+          <Property Name="import_item_place" Type="varchar" MaxLength="250" />
+          <Property Name="export_item_place" Type="varchar" MaxLength="250" />
+          <Property Name="extra" Type="varchar" MaxLength="250" />
+          <Property Name="road_money" Type="float" />
+          <Property Name="gasolin_money" Type="float" />
+          <Property Name="other_payment" Type="float" />
+          <Property Name="income_per_truck" Type="float" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -83,25 +106,10 @@ warning 6002: The table/view 'Door.dbo.Debit_Product' does not have a primary ke
         </EntityType>
         <EntityContainer Name="DoorModelStoreContainer">
           <EntitySet Name="Debit_Note" EntityType="Self.Debit_Note" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Debit_Product" EntityType="Self.Debit_Product" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Truck" EntityType="Self.Truck" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Debit_Product" EntityType="Self.Debit_Product" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Debit_Product].[product_id] AS [product_id], 
-    [Debit_Product].[debit_id] AS [debit_id], 
-    [Debit_Product].[debit_full_id] AS [debit_full_id], 
-    [Debit_Product].[order_number] AS [order_number], 
-    [Debit_Product].[edit_by] AS [edit_by], 
-    [Debit_Product].[edit_on] AS [edit_on], 
-    [Debit_Product].[product_name] AS [product_name], 
-    [Debit_Product].[product_amount] AS [product_amount], 
-    [Debit_Product].[product_amount_type] AS [product_amount_type], 
-    [Debit_Product].[pro_unit_price] AS [pro_unit_price], 
-    [Debit_Product].[vate] AS [vate], 
-    [Debit_Product].[total_price] AS [total_price], 
-    [Debit_Product].[extra] AS [extra]
-    FROM [dbo].[Debit_Product] AS [Debit_Product]</DefiningQuery>
-          </EntitySet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -121,6 +129,7 @@ warning 6002: The table/view 'Door.dbo.Debit_Product' does not have a primary ke
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="Users" EntityType="DoorModel.User" />
           <EntitySet Name="Debit_Note" EntityType="DoorModel.Debit_Note" />
+          <EntitySet Name="Trucks" EntityType="DoorModel.Truck" />
           <EntitySet Name="Debit_Product" EntityType="DoorModel.Debit_Product" />
         </EntityContainer>
         <EntityType Name="User">
@@ -166,16 +175,41 @@ warning 6002: The table/view 'Door.dbo.Debit_Product' does not have a primary ke
           <Property Name="package_number" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="vessel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="voy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="advance_money" Type="Double" />
+          <Property Name="debit_fullId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Truck">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="bed_date" Type="DateTime" Precision="3" />
+          <Property Name="end_date" Type="DateTime" Precision="3" />
+          <Property Name="create_by" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="create_on" Type="DateTime" Precision="3" />
+          <Property Name="change_by" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="change_on" Type="DateTime" Precision="3" />
+          <Property Name="transport_date" Type="DateTime" Precision="3" />
+          <Property Name="truck_sign_number" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="container_number" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="container_size" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="container_net_size" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="container_amount" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="import_item_place" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="export_item_place" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="extra" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="road_money" Type="Double" />
+          <Property Name="gasolin_money" Type="Double" />
+          <Property Name="other_payment" Type="Double" />
+          <Property Name="income_per_truck" Type="Double" />
         </EntityType>
         <EntityType Name="Debit_Product">
           <Key>
             <PropertyRef Name="product_id" />
-            <PropertyRef Name="debit_id" />
-            <PropertyRef Name="debit_full_id" />
           </Key>
           <Property Name="product_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="debit_id" Type="Int32" Nullable="false" />
-          <Property Name="debit_full_id" Type="Int32" Nullable="false" />
+          <Property Name="debit_id" Type="Int32" />
+          <Property Name="debit_full_id" Type="Int32" />
           <Property Name="order_number" Type="Int32" />
           <Property Name="edit_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="edit_on" Type="DateTime" Precision="3" />
@@ -227,6 +261,8 @@ warning 6002: The table/view 'Door.dbo.Debit_Product' does not have a primary ke
           <EntitySetMapping Name="Debit_Note">
             <EntityTypeMapping TypeName="DoorModel.Debit_Note">
               <MappingFragment StoreEntitySet="Debit_Note">
+                <ScalarProperty Name="debit_fullId" ColumnName="debit_fullId" />
+                <ScalarProperty Name="advance_money" ColumnName="advance_money" />
                 <ScalarProperty Name="voy" ColumnName="voy" />
                 <ScalarProperty Name="vessel" ColumnName="vessel" />
                 <ScalarProperty Name="package_number" ColumnName="package_number" />
@@ -246,6 +282,32 @@ warning 6002: The table/view 'Door.dbo.Debit_Product' does not have a primary ke
                 <ScalarProperty Name="end_date" ColumnName="end_date" />
                 <ScalarProperty Name="start_date" ColumnName="start_date" />
                 <ScalarProperty Name="debit_id" ColumnName="debit_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Trucks">
+            <EntityTypeMapping TypeName="DoorModel.Truck">
+              <MappingFragment StoreEntitySet="Truck">
+                <ScalarProperty Name="income_per_truck" ColumnName="income_per_truck" />
+                <ScalarProperty Name="other_payment" ColumnName="other_payment" />
+                <ScalarProperty Name="gasolin_money" ColumnName="gasolin_money" />
+                <ScalarProperty Name="road_money" ColumnName="road_money" />
+                <ScalarProperty Name="extra" ColumnName="extra" />
+                <ScalarProperty Name="export_item_place" ColumnName="export_item_place" />
+                <ScalarProperty Name="import_item_place" ColumnName="import_item_place" />
+                <ScalarProperty Name="container_amount" ColumnName="container_amount" />
+                <ScalarProperty Name="container_net_size" ColumnName="container_net_size" />
+                <ScalarProperty Name="container_size" ColumnName="container_size" />
+                <ScalarProperty Name="container_number" ColumnName="container_number" />
+                <ScalarProperty Name="truck_sign_number" ColumnName="truck_sign_number" />
+                <ScalarProperty Name="transport_date" ColumnName="transport_date" />
+                <ScalarProperty Name="change_on" ColumnName="change_on" />
+                <ScalarProperty Name="change_by" ColumnName="change_by" />
+                <ScalarProperty Name="create_on" ColumnName="create_on" />
+                <ScalarProperty Name="create_by" ColumnName="create_by" />
+                <ScalarProperty Name="end_date" ColumnName="end_date" />
+                <ScalarProperty Name="bed_date" ColumnName="bed_date" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

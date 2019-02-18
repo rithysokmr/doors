@@ -34,5 +34,7 @@ namespace Doors.Models
         public string package_number { get; set; }
         public string vessel { get; set; }
         public string voy { get; set; }
+        public Nullable<double> advance_money { get; set; }
+        public string debit_fullId { get; set; }
     }
 }

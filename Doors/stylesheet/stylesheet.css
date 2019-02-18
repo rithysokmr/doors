@@ -79,3 +79,15 @@ input:read-only { background: lightgray; }
     width: 600px;
     margin: 0 auto;
 }
+
+/* Debit Note */
+.debit-cover .debit-left {
+    width: 50%;
+}
+.debit-cover .debit-right {
+    width: 40%;
+}
+.debit-right, .debit-left {
+    display:inline-block !important;
+    vertical-align: top;
+}

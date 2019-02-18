@@ -8,7 +8,8 @@
         <EntityTypeShape EntityType="DoorModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DoorModel.User" Width="1.5" PointX="2.5" PointY="0.75" />
         <EntityTypeShape EntityType="DoorModel.Debit_Note" Width="1.5" PointX="4.375" PointY="0.75" />
-        <EntityTypeShape EntityType="DoorModel.Debit_Product" Width="1.5" PointX="6.25" PointY="0.75" />
+        <EntityTypeShape EntityType="DoorModel.Truck" Width="1.5" PointX="8.25" PointY="0.75" />
+        <EntityTypeShape EntityType="DoorModel.Debit_Product" Width="1.5" PointX="6.375" PointY="1.25" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

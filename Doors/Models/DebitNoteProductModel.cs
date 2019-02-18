@@ -7,7 +7,7 @@ namespace Doors.Models
 {
     public class DebitNoteProductModel
     {
-        public DeditNoteModel Debit_Note { get; set; }
-        public List<DebitProductModel> DebitProductList { get; set; }
+        public DebitNoteModel Debit_Note { get; set; }
+        public List<Debit_Product> DebitProductList { get; set; }
     }
 }

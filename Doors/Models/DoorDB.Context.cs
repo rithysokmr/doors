@@ -28,6 +28,7 @@ namespace Doors.Models
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Debit_Note> Debit_Note { get; set; }
+        public virtual DbSet<Truck> Trucks { get; set; }
         public virtual DbSet<Debit_Product> Debit_Product { get; set; }
     }
 }
